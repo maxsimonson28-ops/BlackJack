@@ -7,11 +7,25 @@ public class Player {
     public String name;
 
 
-    public void hit(){
+    public Player() {
+        cardTotal = 0;
+        isBust = false;
+        isHit = true;
+        name = "me";
+        hand = new Card[2];
+    }
+
+
+    public void printInfo() {
+        System.out.println("Hello " + name + " you have " + cardTotal + " total cards");
+    }
+
+    public void hit() {
 
     }
 
-    public void stand(){
-
+    public void stand() {
     }
+
 }
+

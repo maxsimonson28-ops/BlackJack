@@ -6,14 +6,45 @@ public class BasicGameApp {
 
     public static void main(String[] args) {
         new BasicGameApp();
+
     }
 
-    public BasicGameApp(){
+    public BasicGameApp() {
         System.out.println("Welcome to Blackjack");
         deck = new Card[52];
-        for(int x = 0; x < 14; x++){
-            deck[x] = new Card(10,"hearts",x);
-            deck[x].printInfo();
+        int counter = 0;
+
+        for (int y = 0; y < 4; y++) {
+            for (int x = 0; x < 13; x++) {
+                deck[counter] = new Card(10, y, x);
+                counter++;
+               // deck[x].printInfo();
+            }
+        }
+        shuffle();
+        printDeck();
+
+        me = new Player();
+        d = new Dealer();
+        me.printInfo();
+        d.printInfo();
+
+
+    }
+
+
+    public void printDeck(){
+        for(int i = 0; i < deck.length; i++){
+            deck[i].printInfo();
+        }
+    }
+
+    public void shuffle(){
+        for(int x = 0; x < deck.length; x++){
+            int randomIndex = (int)(Math.random() * 52);
+            Card spencer = deck[randomIndex];
+            deck[randomIndex] = deck[x];
+            deck[x] = spencer;
         }
     }
 
@@ -25,9 +56,7 @@ public class BasicGameApp {
 
     }
 
-    public void shuffle(){
 
-    }
 
 
 

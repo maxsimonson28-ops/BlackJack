@@ -6,8 +6,20 @@ public String name;
 
 
 
-public Card(int pValue,String pSuit, int pName){
-    suit = pSuit;
+public Card(int pValue,int pSuit, int pName){
+    if(pSuit == 0){
+        suit = "hearts";
+    }
+    else if(pSuit == 1){
+        suit = "diamonds";
+    }
+    else if(pSuit == 2){
+        suit = "spades";
+    }
+    else if(pSuit == 3){
+        suit = "clubs";
+    }
+
     value = pValue;
     if(pName == 0){
         name = "Ace";
