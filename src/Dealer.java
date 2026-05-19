@@ -16,7 +16,17 @@ public class Dealer {
     }
 
     public void printInfo(){
-        System.out.println("The dealer has " + cardTotal + " total cards and " + hand + " cards in their hand");
+        System.out.println("The dealer's card value is  " + cardTotal );
+        for(int x = 0; x < hand.length; x++){
+            hand[x].printInfo();
+        }
+    }
+
+    public void calculateTotal(){
+        cardTotal = 0;
+        for(int x = 0; x < hand.length; x++){
+            cardTotal += hand[x].value;
+        }
     }
 
     public void hit(){
