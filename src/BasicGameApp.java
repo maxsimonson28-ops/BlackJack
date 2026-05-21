@@ -46,8 +46,20 @@ public class BasicGameApp {
         me.name = name;
 
 
+
+
         me.printInfo();
         d.printInfo();
+
+        System.out.println("Hit or stand");
+        String hit = s.nextLine();
+        System.out.println(hit);
+        if(hit.equals("hit")){
+            System.out.println("You chose HIT");
+            me.isHit = true;
+            me.hit();
+            me.printInfo();
+        }
 
 
 
