@@ -5,7 +5,7 @@ public class Player {
     public boolean isHit;
     public Card[] hand;
     public String name;
-    public Card[] hit;
+    public boolean hasAce;
 
 
     public Player() {
@@ -14,7 +14,8 @@ public class Player {
         isHit = true;
         name = "Me";
         hand = new Card[2];
-        hit = new Card[1];
+        hasAce = false;
+
     }
 
 
@@ -29,13 +30,22 @@ public class Player {
         cardTotal = 0;
         for(int x = 0; x < hand.length; x++){
             cardTotal += hand[x].value;
+            if(hand[x].name.equals("Ace")){
+                hasAce = true;
+            }
+            if(hasAce == true && isBust == true){
+                cardTotal = cardTotal - 10;
+            }
         }
+
+
     }
 
     public void hit() {
+        cardTotal = 0;
         if(isHit == true){
-            for(int x = 0; x < hit.length; x++){
-                cardTotal += hit[x].value;
+            for(int x = 0; x < hand.length; x++){
+                cardTotal += hand[x].value;
             }
 
         }
