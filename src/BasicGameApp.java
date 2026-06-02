@@ -30,72 +30,86 @@ public class BasicGameApp {
         d = new Dealer();
        // me.calculateTotal();
 
-        me.hand[0] = deck[0];
-        me.hand[1] = deck[1];
-        me.calculateTotal();
-        d.hand[0] = deck[2];
-        d.hand[1] = deck[3];
-        d.calculateTotal();
-
-
-
-        Scanner s = new Scanner(System.in);
-        System.out.println("What is your name?");
-        String name = s.nextLine();
-        System.out.println(name);
-        me.name = name;
-
-
-
-
-        me.printInfo();
-        d.printInfo();
-
-        System.out.println("Hit or stand");
-        String hit = s.nextLine();
-        System.out.println(hit);
-        if(hit.equals("hit")){
-            System.out.println("You chose HIT");
-            me.isHit = true;
-            me.hand = new Card[3];
             me.hand[0] = deck[0];
             me.hand[1] = deck[1];
-            me.hand[2] = deck[4];
-            me.hit();
-            me.printInfo();
-            System.out.println("hit or stand");
-        }
-        if(hit.equals("stand")){
-            me.isHit = false;
-            System.out.println("You chose STAND");
-            me.printInfo();
-        }
-        if(me.cardTotal > 21){
-            me.isBust = true;
-            System.out.println("You BUSTED");
-        }
-
-        if (d.cardTotal < 17){
-            d.isHit = true;
-            System.out.println("The Dealer Hits");
-            d.hand = new Card[3];
-            d.hand[0] = deck[2];
+            me.calculateTotal();
+            d.hand[0] = deck[2];   //giving them all different cards
             d.hand[1] = deck[3];
-            d.hand[2] = deck[5];
-            d.hit();
-            d.printInfo();
-        }
-        else{
-            d.isHit = false;
-            d.printInfo();
-            System.out.println("The Dealer Stands");
+            d.calculateTotal();
 
-        }
-        if(d.cardTotal > 21){
-            d.isBust = true;
-            System.out.println("The dealer BUSTED");
-        }
-        compare();
+
+            Scanner s = new Scanner(System.in);
+            System.out.println("What is your name?");
+            String name = s.nextLine();
+            System.out.println(name); //findsout their name
+            me.name = name;
+
+
+            me.printInfo();
+            d.printInfo();
+
+
+            System.out.println("Hit or stand");
+            String hit = s.nextLine();
+            System.out.println(hit);   //what happens if they type hit
+            if (hit.equals("hit")) {
+                System.out.println("You chose HIT");
+                me.isHit = true;
+                me.hand = new Card[3];
+                me.hand[0] = deck[0];
+                me.hand[1] = deck[1];
+                me.hand[2] = deck[4];  //gives them a new card
+                me.hit();
+                me.calculateTotal();
+                me.printInfo();
+                System.out.println("another or stand");
+                String another = s.nextLine();
+                System.out.println(another);  //if they want another card after they already hit
+                if (hit.equals("another")){
+                    System.out.println("You chose to hit again");
+                    me.isHit = true;
+                    me.hand = new Card[4];
+                    me.hand[1] = deck[1];
+                    me.hand[2] = deck[4];
+                    me.hand[3] = deck[6]; //gives new card
+                    me.hit();
+                    me.calculateTotal();
+                    me.printInfo();
+
+                }
+            }
+            if (hit.equals("stand")) {
+                me.isHit = false;
+                System.out.println("You chose STAND"); //nothing happens if stands
+                me.printInfo();
+            }
+            if (me.cardTotal > 21) {
+                me.isBust = true; //what happpens if they bust
+                System.out.println("You BUSTED");
+            }
+
+            if (d.cardTotal < 17) {
+                d.isHit = true; //dealer hits if 16 or below
+                System.out.println("The Dealer Hits");
+                d.hand = new Card[3];
+                d.hand[0] = deck[2];
+                d.hand[1] = deck[3];
+                d.hand[2] = deck[5];
+                d.hit();
+                d.calculateTotal();
+                d.printInfo();
+            } else {
+                d.isHit = false;
+                d.printInfo();
+                System.out.println("The Dealer Stands");
+
+            }
+            if (d.cardTotal > 21) {
+                d.isBust = true;
+                System.out.println("The dealer BUSTED");
+            }
+            compare();
+
 
 
 
@@ -111,7 +125,7 @@ public class BasicGameApp {
 
     public void shuffle(){
         for(int x = 0; x < deck.length; x++){
-            int randomIndex = (int)(Math.random() * 52);
+            int randomIndex = (int)(Math.random() * 52); //shuffles deck
             Card spencer = deck[randomIndex];
             deck[randomIndex] = deck[x];
             deck[x] = spencer;
@@ -122,24 +136,22 @@ public class BasicGameApp {
 
 
     if(me.isBust == true){
-        System.out.println("The dealer WINS");
+        System.out.println("The dealer WINS"); //dealer wins if player busts
     }
     else if(d.isBust == true){
-        System.out.println("you WIN");
+        System.out.println("you WIN"); //player wins if dealer busts and player doesn't
     } else if (d.cardTotal > me.cardTotal) {
-        System.out.println("the dealer WINS");
+        System.out.println("the dealer WINS"); //if nobody busts but dealer is higher than player dealer wins
     } else if (me.cardTotal > d.cardTotal) {
-        System.out.println("you WIN");
+        System.out.println("you WIN"); //player is higher than dealer
     }else {
-        System.out.println("you PUSH");
+        System.out.println("you PUSH"); //if they tie its a push
     }
 
 
     }
 
-    public void round(){
 
-    }
 
 
 

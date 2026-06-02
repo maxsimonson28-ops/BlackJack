@@ -33,6 +33,9 @@ public class Player {
             if(hand[x].name.equals("Ace")){
                 hasAce = true;
             }
+            if(cardTotal > 21){
+                isBust = true;
+            }
             if(hasAce == true && isBust == true){
                 cardTotal = cardTotal - 10;
             }

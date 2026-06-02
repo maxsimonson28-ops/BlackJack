@@ -33,7 +33,7 @@ public class Dealer {
             if(hand[x].name.equals("Ace")){
                 hasAce = true;
             }
-            if(hasAce == true && isBust == true){
+            if(isBust == true && hasAce == true){
                 cardTotal = cardTotal - 10;
             }
         }

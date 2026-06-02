@@ -24,6 +24,7 @@ public Card(int pValue,int pSuit, int pName){
     if(pName == 0){
         name = "Ace";
         value = 11;
+
     }
     else if(pName == 1){
         name = "2";
